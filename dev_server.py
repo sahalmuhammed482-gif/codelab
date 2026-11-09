@@ -1,9 +1,9 @@
 """
 CodeLab: Materials × Bio
-server.py - Python Local Development Server
+dev_server.py - Python Local Development Server
 
 Run this file in your terminal using:
-    python server.py
+    python dev_server.py
 
 This starts a local web server on port 8000 using Python's built-in standard library.
 No third-party packages or pip installs required!
