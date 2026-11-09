@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CODELAB - Materials Science & Biotechnology</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%200%22%20100%22%20100%22><text y=%22.9em%22 font-size=%2290%22>🐍</text></svg>">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand" id="nav-brand" style="cursor: pointer;" title="Return to Home">
+        <span class="brand-icon">⚛️</span>
+        <div>
+          <h1>CODELAB</h1>
+          <p class="brand-sub">Materials Science & Biotechnology</p>
+        </div>
+      </div>
+
+      <nav class="header-nav">
+        <button class="nav-btn active" id="btn-nav-home">🏠 Home</button>
+        <button class="nav-btn" id="btn-nav-game">🎮 Play Game</button>
+      </nav>
+
+      <div class="stats-panel">
+        <div class="stat-badge">
+          <span class="stat-label">Academic Rank</span>
+          <span class="stat-value highlight" id="hud-level-pill">Level 1: Lab Trainee</span>
+        </div>
+        <div class="stat-badge">
+          <span class="stat-label">Total Points</span>
+          <span class="stat-value" id="hud-xp">0 XP</span>
+        </div>
+        <div class="stat-badge">
+          <span class="stat-label">Solved</span>
+          <span class="stat-value" id="hud-solved">0 / 30</span>
+        </div>
+        <button class="btn-reset" id="btn-reset-progress" title="Reset your saved score">↺ Reset</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       FRONT PAGE / HOME VIEW
+       ====================================================================== -->
+  <section class="home-view" id="home-view">
+    <div class="hero-box">
+      <div class="hero-tag">🧪 Python Coding Meets Physical Science</div>
+      <h1 class="hero-heading">CODELAB - Materials Science & Biotechnology</h1>
+      <p class="hero-subheading">
+        Learn Python programming step-by-step through practical challenges in Materials Science, 
+        Biotechnology, and Nanotechnology. Write real code, earn XP points, and level up from 
+        <strong>Lab Trainee</strong> to <strong>Chief Innovator</strong>.
+      </p>
+      
+      <div class="hero-actions">
+        <button class="btn-hero-primary" id="btn-hero-start">
+          <span>🚀</span> Start the Game
+        </button>
+      </div>
+    </div>
+
+    <!-- Tier Overview Cards -->
+    <div class="overview-section">
+      <h2 class="overview-title">Three Progressive Difficulty Tiers (30 Levels Total)</h2>
+      <div class="tier-cards-grid">
+        
+        <div class="tier-card tier-card-easy" data-target-tier="easy" title="Click to launch Easy tier">
+          <div class="tier-card-header">
+            <span class="dot dot-easy"></span>
+            <h3>Easy Tier (Levels 1 - 10)</h3>
+            <span class="tier-reward">+20 XP per level</span>
+          </div>
+          <p class="tier-card-desc">
+            Master programming fundamentals: <code>print()</code> statements, variables (integers & floats), 
+            mass calculations, temperature conversions, <code>if-else</code> conditions, and lists.
+          </p>
+          <ul class="tier-features">
+            <li>✔ Iron melting point & Copper density</li>
+            <li>✔ Celsius to Kelvin thermodynamics</li>
+            <li>✔ Smelting phase transition checks</li>
+            <li>✔ Bacterial observation loops with <code>range()</code></li>
+          </ul>
+        </div>
+
+        <div class="tier-card tier-card-medium" data-target-tier="medium" title="Click to launch Medium tier">
+          <div class="tier-card-header">
+            <span class="dot dot-medium"></span>
+            <h3>Medium Tier (Levels 11 - 20)</h3>
+            <span class="tier-reward">+40 XP per level</span>
+          </div>
+          <p class="tier-card-desc">
+            Dive into data structures and functions: list indexing, loops over lists, 
+            averaging trial replicates, <code>while</code> loops, <code>min()</code> / <code>max()</code>, and reusable functions.
+          </p>
+          <ul class="tier-features">
+            <li>✔ Experimental 3-trial mean averages</li>
+            <li>✔ Chemical reactor cooling countdowns</li>
+            <li>✔ Counting Adenine bases in DNA</li>
+            <li>✔ Reusable <code>density(m, v)</code> functions</li>
+          </ul>
+        </div>
+
+        <div class="tier-card tier-card-hard" data-target-tier="hard" title="Click to launch Hard tier">
+          <div class="tier-card-header">
+            <span class="dot dot-hard"></span>
+            <h3>Hard Tier (Levels 21 - 30)</h3>
+            <span class="tier-reward">+60 XP per level</span>
+          </div>
+          <p class="tier-card-desc">
+            Apply real scientific engineering formulas: heat classification functions, 
+            nanoscale quantum dot exponents, radioisotope decay half-life, and Young's modulus of elasticity.
+          </p>
+          <ul class="tier-features">
+            <li>✔ Ballistic graphene sample filters</li>
+            <li>✔ Bacterial exponential doubling simulations</li>
+            <li>✔ DNA GC-content stability calculations</li>
+            <li>✔ Young's Modulus ($E = \sigma / \varepsilon$) and dataset range</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- How to Play Quick Steps -->
+      <div class="steps-box">
+        <h3 class="steps-title">How It Works</h3>
+        <div class="steps-grid">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <h4>Pick a Level</h4>
+            <p>Select any level from Easy, Medium, or Hard difficulty tiers.</p>
+          </div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <h4>Write Python Code</h4>
+            <p>Read the scientific scenario and type your code in the clean editor.</p>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <h4>Check & Earn Points</h4>
+            <p>Click "Run Code" to view terminal output, and "Check Answer" to earn XP!</p>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 24px;">
+          <button class="btn-hero-secondary" id="btn-hero-start-bottom">
+            <span>▶</span> Launch Python Challenges
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       GAME VIEW (CHALLENGE WORKSPACE)
+       ====================================================================== -->
+  <main class="main-content" id="game-view" style="display: none;">
+    
+    <!-- Tier Selection Tabs -->
+    <div class="tier-tabs">
+      <button class="tier-btn active" data-tier="easy">
+        <span class="dot dot-easy"></span>
+        Easy Levels (1 - 10)
+      </button>
+      <button class="tier-btn" data-tier="medium">
+        <span class="dot dot-medium"></span>
+        Medium Levels (11 - 20)
+      </button>
+      <button class="tier-btn" data-tier="hard">
+        <span class="dot dot-hard"></span>
+        Hard Levels (21 - 30)
+      </button>
+    </div>
+
+    <!-- Levels Selector Grid -->
+    <div class="levels-grid" id="levels-container">
+      <!-- Generated dynamically by app.js (10 buttons for active tier) -->
+    </div>
+
+    <!-- Active Challenge Workspace -->
+    <div class="workspace-card">
+      
+      <!-- Challenge Header -->
+      <div class="challenge-header">
+        <div>
+          <div class="challenge-meta">
+            <span class="badge" id="cw-difficulty-badge">Easy</span>
+            <span class="badge badge-topic" id="cw-topic-badge">print() Statement</span>
+            <span class="badge badge-xp" id="cw-xp-badge">+20 XP</span>
+          </div>
+          <h2 class="challenge-title" id="cw-title">Level 1: Lab Terminal Greeting</h2>
+        </div>
+        <div id="cw-status-indicator">
+          <!-- Solved or Unsolved indicator -->
+        </div>
+      </div>
+
+      <!-- Problem Description & Instructions -->
+      <div class="challenge-description">
+        <p class="scenario-text" id="cw-scenario">
+          Welcome to the research laboratory! Every scientific instrument logs status messages to the console.
+        </p>
+        <div class="instruction-box" id="cw-instruction">
+          Use the <code>print()</code> function to display exactly: <code>Hello, Science Lab!</code>
+        </div>
+      </div>
+
+      <!-- Python Code Editor -->
+      <div class="editor-wrapper">
+        <div class="editor-bar">
+          <span class="editor-file">main.py (Python Workspace)</span>
+          <div class="editor-quick-actions">
+            <button class="btn-tool" id="btn-hint">💡 Hint</button>
+            <button class="btn-tool" id="btn-clear-code">↺ Clear</button>
+          </div>
+        </div>
+        <textarea class="code-editor" id="code-input" spellcheck="false" placeholder="# Type your Python code here..."></textarea>
+      </div>
+
+      <!-- Editor Controls -->
+      <div class="editor-actions">
+        <button class="btn btn-run" id="btn-run-code">▶ Run Code</button>
+        <button class="btn btn-check" id="btn-check-answer">✔ Check Answer</button>
+      </div>
+
+      <!-- Terminal Output Screen -->
+      <div class="terminal-box">
+        <div class="terminal-title">
+          <span>TERMINAL OUTPUT</span>
+          <span class="terminal-status" id="terminal-status">READY</span>
+        </div>
+        <pre class="terminal-body" id="terminal-body">Press "Run Code" to test or "Check Answer" to verify your solution.</pre>
+      </div>
+
+      <!-- Result Banner -->
+      <div class="feedback-banner" id="feedback-banner" style="display: none;"></div>
+
+    </div>
+
+  </main>
+
+  <!-- Simple Footer with Python Information -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>CODELAB - Materials Science & Biotechnology • Educational Python Project</p>
+      <p class="footer-sub">
+        Run this website with Python: 
+        <code>python server.py</code> or test challenge solutions with <code>python python/run_tests.py</code>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/challenges.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

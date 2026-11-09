@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CodeLab 30 Challenges Automated Test Suite</title>
+</head>
+<body>
+  <h1>Running CodeLab 30 Challenges Test Suite...</h1>
+  <div id="results"></div>
+
+  <script src="js/challenges.js"></script>
+  <script src="js/game.js"></script>
+
+  <script>
+    const results = [];
+    function assert(name, condition, extra = '') {
+      if (condition) {
+        results.push(`PASS: ${name}`);
+        console.log(`[PASS] ${name}`);
+      } else {
+        results.push(`FAIL: ${name} - ${extra}`);
+        console.error(`[FAIL] ${name} - ${extra}`);
+      }
+    }
+
+    try {
+      assert('30 Challenges Array Exists', Array.isArray(window.CHALLENGES));
+      assert('Exactly 30 Challenges Defined', window.CHALLENGES.length === 30, `Found: ${window.CHALLENGES.length}`);
+
+      const easyList = window.CHALLENGES.filter(c => c.difficulty === 'easy');
+      const medList = window.CHALLENGES.filter(c => c.difficulty === 'medium');
+      const hardList = window.CHALLENGES.filter(c => c.difficulty === 'hard');
+
+      assert('10 Easy Challenges', easyList.length === 10, `Found ${easyList.length}`);
+      assert('10 Medium Challenges', medList.length === 10, `Found ${medList.length}`);
+      assert('10 Hard Challenges', hardList.length === 10, `Found ${hardList.length}`);
+
+      const sim = new SafePythonSimulator();
+
+      // Test that all starter codes DO NOT give free points
+      let starterRequireInputCount = 0;
+      CHALLENGES.forEach(c => {
+        const res = sim.run(c.starterCode);
+        const val = c.validator(c.starterCode, res);
+        if (!val.passed) {
+          starterRequireInputCount++;
+        } else {
+          console.error('Starter gave free pass without code for:', c.id);
+        }
+      });
+      assert('All 30 Starter Codes Require User Input', starterRequireInputCount === 30, `Count: ${starterRequireInputCount}/30`);
+
+      // Test that all 30 reference solutions PASS validation 100%
+      let solutionPassCount = 0;
+      CHALLENGES.forEach(c => {
+        const res = sim.run(c.solutionCode);
+        const val = c.validator(c.solutionCode, res);
+        if (val.passed) {
+          solutionPassCount++;
+        } else {
+          results.push(`FAILED_CH: ${c.id} - ${c.title} - ${val.message} - Out: ${res.stdout.join(';')} - Vars: ${JSON.stringify(res.variables)}`);
+          console.error('Solution failed for:', c.id, c.title, val.message, 'Output:', res.stdout);
+        }
+      });
+      assert('All 30 Reference Solutions Pass 100%', solutionPassCount === 30, `Passed: ${solutionPassCount}/30`);
+
+      // Test Game Engine
+      const testGame = new GameEngine();
+      testGame.resetProgress();
+      assert('Initial XP is 0', testGame.state.xp === 0);
+      assert('Initial Solved is 0', testGame.state.completedChallenges.length === 0);
+
+      const r1 = testGame.completeChallenge('ch_1');
+      assert('Complete Challenge 1 Awards 20 XP', r1.isFirstTime && testGame.state.xp === 20);
+
+      const r2 = testGame.completeChallenge('ch_1');
+      assert('Duplicate Challenge 1 Does Not Award Repeated XP', !r2.isFirstTime && testGame.state.xp === 20);
+
+      document.getElementById('results').innerHTML = `<pre>${results.join('\n')}</pre><h2 id="summary">TESTS COMPLETED: ${results.filter(r => r.startsWith('PASS')).length} PASSED / ${results.filter(r => r.startsWith('FAIL')).length} FAILED</h2>`;
+    } catch (e) {
+      document.getElementById('results').innerHTML = `<h2 style="color:red">EXCEPTION: ${e.message}</h2><pre>${e.stack}</pre>`;
+    }
+  </script>
+</body>
+</html>
