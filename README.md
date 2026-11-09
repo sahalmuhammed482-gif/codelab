@@ -66,10 +66,11 @@ The platform contains **30 progressive levels** divided into 3 clear difficulty 
 
 If your teacher asks: *"Where is the Python in this project?"*, here is how to explain it:
 
-1. **`server.py` (Python Web Server)**:
+1. **`local_server.py` (Python Web Server)**:
    - The entire website can be served directly using Python!
-   - Run: `python server.py`
+   - Run: `python local_server.py`
    - It runs Python's built-in `http.server` module to serve the website on `http://localhost:8000`.
+   - Vercel deploys the HTML, CSS, and JavaScript as a static site; the local server is only for development.
 
 2. **`python/` Folder (Pure Python Scripts)**:
    - `python/challenges.py`: All 30 challenge solutions written in 100% standard Python.
@@ -91,7 +92,7 @@ You do not need to install any heavy packages or paid tools.
 ### Option 1: Run with Python (Best for your presentation!)
 Open the terminal in VS Code (`Ctrl + ~`) and type:
 ```bash
-python server.py
+python local_server.py
 ```
 Your default web browser will automatically open:
 ```text
@@ -138,7 +139,7 @@ Players earn XP points for every challenge they complete:
 ```text
 d:\project_01/
 │
-├── server.py               # Python web server (run with: python server.py)
+├── local_server.py         # Local-only Python web server (run with: python local_server.py)
 │
 ├── python/                 # Pure Python directory
 │   ├── challenges.py       # All 30 challenge functions in standard Python
@@ -173,4 +174,4 @@ d:\project_01/
 >
 > *They write Python code in the editor, click 'Run Code' to see the output in the terminal, and click 'Check Answer' to earn XP and level up from Lab Trainee to Chief Innovator.*
 >
-> *To run the project, I wrote a Python web server in `server.py` using Python's standard library, and I also wrote a standalone Python test script `run_tests.py` that verifies all 30 challenges directly in the Python terminal."*
+> *To run the project locally, I wrote a Python web server in `local_server.py` using Python's standard library, and I also wrote a standalone Python test script `run_tests.py` that verifies all 30 challenges directly in the Python terminal."*
